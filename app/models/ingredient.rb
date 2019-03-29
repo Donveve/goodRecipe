@@ -1,3 +1,4 @@
-class Ingredient < ActiveRecord::Base
-  belongs_to :recipe
+class Ingredient < ApplicationRecord
+  has_many :recipe_ingredients
+  validates :name, uniqueness: true, presence: true
 end

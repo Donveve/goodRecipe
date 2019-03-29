@@ -1,7 +1,14 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
+  
+  has_many :ratings
+  has_many :comments
+  has_many :favorites
+  has_many :recipes, through: :favorites
+  has_many :recipes
 
-  item :database_authenticatable, :registerable,
+  accepts_nested_attributes_for :recipes
+
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-	has_many :recipes
 end
